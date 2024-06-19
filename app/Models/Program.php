@@ -9,14 +9,7 @@ class Program extends Model
 {
     use HasFactory;
 
-    protected $table = 'programs';
-
-    protected $fillable = [
-        'progfullname', 
-        'progshortname', 
-        'progcollid', 
-        'progcolldeptid'
-    ];
+    protected $fillable = ['progfullname', 'progshortname', 'progcollid', 'progcolldeptid'];
 
     public function college()
     {
@@ -27,4 +20,10 @@ class Program extends Model
     {
         return $this->belongsTo(Department::class, 'progcolldeptid');
     }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class, 'studprogid');
+    }
 }
+

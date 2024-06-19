@@ -9,24 +9,16 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $table = 'students';
+    protected $fillable = ['studfirstname', 'studlastname', 'studmidname', 'studprogid', 'studcolid', 'studyyear'];
 
-    protected $fillable = [
-        'studfirstname', 
-        'studlastname', 
-        'studmidname', 
-        'studprogid', 
-        'studcollid', 
-        'studyyear'
-    ];
+    public function college()
+    {
+        return $this->belongsTo(College::class, 'studcolid');
+    }
 
     public function program()
     {
         return $this->belongsTo(Program::class, 'studprogid');
     }
-
-    public function college()
-    {
-        return $this->belongsTo(College::class, 'studcollid');
-    }
 }
+
